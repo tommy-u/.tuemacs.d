@@ -1,4 +1,5 @@
-* Goals for configuring emacs (Intended to be viewed in Emacs org-mode)
+* Goals for configuring emacs 
+* (Intended to be viewed in Emacs org-mode)
 
 ** TODO Create repo
 
@@ -7,3 +8,4 @@
 ** DONE Get Chords working on local machine
    CLOSED: [2016-11-27 Sun 16:34]
 ** TODO Try out EVIL mode
+** Prevent melpa from storing package data in .emacs.d (change name of this repo)?

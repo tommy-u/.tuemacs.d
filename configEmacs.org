@@ -1,0 +1,9 @@
+* Goals for configuring emacs 
+
+** TODO Create repo
+
+** TODO Remap meta to control
+** TODO Remap return to control
+** DONE Get Chords working on local machine
+   CLOSED: [2016-11-27 Sun 16:34]
+** TODO Try out EVIL mode

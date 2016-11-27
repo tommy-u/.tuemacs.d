@@ -25,28 +25,12 @@
 ;;Show selected text.
 (setq-default transient-mark-mode t)
 
-;; Enable mouse support
-(unless window-system
-  (require 'mouse)
-  (xterm-mouse-mode t)
-   (global-set-key [mouse-4] (lambda ()
-                               (interactive)
-                               (scroll-down 1)))
-   (global-set-key [mouse-5] (lambda ()
-                               (interactive)
-                               (scroll-up 1)))
-  (defun track-mouse (e))
-  (setq mouse-sel-mode t)
-;;(setq select-active-regions nil)
-;;(setq mouse-drag-copy-region t)
-;;(global-set-key [mouse-2] 'mouse-yank-at-click)
-)
 
 ;;Package Management
 (load "~/.tuemacs.d/my-loadpackages.el")
 (add-hook 'after-init-hook '(lambda ()
   (load "~/.tuemacs.d/my-noexternals.el")
-))
+  ))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,10 +54,3 @@
 ;;Fix iedit bug in Mac
 ;;(define-key global-map (kbd "C-c ;") 'iedit-mode)
 
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
-
-;;(require 'evil)
-;;(evil-mode t)

@@ -8,10 +8,10 @@
 (package-initialize)
 
 (setq backup-directory-alist
-      `((".*" . ,"~/emacs_backups")))
+      `((".*" . ,"~/.emacs_backups")))
 
 (setq auto-save-file-name-transforms
-      `((".*" ,"~/emacs_backups" t)))
+      `((".*" ,"~/.emacs_backups" t)))
 
 ;;Resize
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)

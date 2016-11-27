@@ -1,4 +1,4 @@
-* Goals for configuring emacs 
+* Goals for configuring emacs (Intended to be viewed in Emacs org-mode)
 
 ** TODO Create repo
 

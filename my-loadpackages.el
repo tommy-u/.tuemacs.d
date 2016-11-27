@@ -1,6 +1,6 @@
 ; ~/.emacs.d/my-loadpackages.el
 ; loading package
-(load "~/.emacs.d/my-packages.el")
+(load "~/.tuemacs.d/my-packages.el")
 (require 'doremi)
 (require 'color-theme)
   (setq my-color-themes (list 'color-theme-billw 'color-theme-jsc-dark 

@@ -9,3 +9,5 @@
    CLOSED: [2016-11-27 Sun 16:34]
 ** TODO Try out EVIL mode
 ** Prevent melpa from storing package data in .emacs.d (change name of this repo)?
+** Change dot file to init.el
+** Figure out after init hook.

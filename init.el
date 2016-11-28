@@ -54,3 +54,11 @@
 ;;Fix iedit bug in Mac
 ;;(define-key global-map (kbd "C-c ;") 'iedit-mode)
 
+
+(require 'org-install)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((C . true) (python . true))
+ )
+
+(setq org-src-fontify-natively t)

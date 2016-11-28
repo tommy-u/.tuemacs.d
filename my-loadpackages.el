@@ -15,12 +15,9 @@
 ;; 			    (setq yas-dont-activate t)))
  
 
-(define-key global-map (kbd "C-S-f") 'windmove-left)
-
 (require 'key-chord)
 (setq key-chord-two-keys-delay .05
       key-chord-one-key-delay .020)
-
 
 (key-chord-mode 1)
 
@@ -66,3 +63,6 @@
 ;;(setq mouse-drag-copy-region t)
 ;;(global-set-key [mouse-2] 'mouse-yank-at-click)
 )
+
+(require 'helm)
+(global-set-key (kbd "M-x") 'helm-M-x)

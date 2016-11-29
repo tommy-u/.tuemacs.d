@@ -4,8 +4,7 @@
 (load "~/.tuemacs.d/my-packages.el")
 (require 'doremi)
 (require 'color-theme)
-
-(require 'magit)
+(require 'magit)			
 (define-key global-map (kbd "C-c m") 'magit-status)
 
 ;; (require 'yasnippet)
@@ -20,13 +19,18 @@
       key-chord-one-key-delay .020)
 
 (key-chord-mode 1)
+(key-chord-define-global "df"     "\C-m") ;;
+(key-chord-define-global "jk"     "\C-m") ;;Ret
+(key-chord-define-global "io"     "\C-i") ;;
+(key-chord-define-global "we"     "\C-i") ;;Tab
 
-(key-chord-define-global "df"     "\C-m")
-(key-chord-define-global "jk"     "\C-m")
-(key-chord-define-global "io"     "\C-i")
-(key-chord-define-global "we"     "\C-i")
-;;(key-chord-define-global "jo"     "<backspace>")
+(key-chord-define-global " s"     'sr-speedbar-toggle)
 
+;;Macros
+(key-chord-define-global "12"     'kmacro-start-macro)
+(key-chord-define-global "90"     'kmacro-end-or-call-macro)
+(key-chord-define-global "-="     "\M-0\C-xe") ;;Play to end.
+;;(key-chord-define-global "=1"     "") ;;Find way to undo all.
 
 ;; Wind-move
 (key-chord-define-global "2f"     "\C-x2")
@@ -43,9 +47,6 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
-;;(require 'evil)
-;;(evil-mode t)
 
 ;; Enable mouse support
 (unless window-system
@@ -66,3 +67,16 @@
 
 (require 'helm)
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(global-set-key (kbd "C-x b") 'helm-buffers-list) ; make Replace buffer list
+(global-set-key (kbd "M-y") 'helm-show-kill-ring) ; make Replace buffer list
+
+(require 'helm-swoop)
+(global-set-key (kbd "M-s") 'helm-swoop)
+
+
+(require 'xcscope)
+
+

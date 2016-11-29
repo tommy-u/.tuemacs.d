@@ -7,6 +7,7 @@
 
 (package-initialize)
 
+
 (setq backup-directory-alist
       `((".*" . ,"~/.emacs_backups")))
 
@@ -62,3 +63,17 @@
  )
 
 (setq org-src-fontify-natively t)
+
+;;Hacked around this in iterm2. Why doesn't it work?
+;;(setq mac-option-key-is-meta t)
+;;(setq mac-command-key-is-meta t)
+;;(setq mac-command-modifier 'meta)
+;;(setq mac-option-modifier 'alt)
+
+;;Why doesnt this work with C-S-n
+(global-set-key (kbd "M-n")
+    (lambda () (interactive) (forward-line  5)))
+(global-set-key (kbd "M-p")
+    (lambda () (interactive) (forward-line -5)))
+
+

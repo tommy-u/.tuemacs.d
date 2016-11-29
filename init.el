@@ -5,12 +5,16 @@
 
 (package-initialize)
 
-
 (setq backup-directory-alist
       `((".*" . ,"~/.emacs_backups")))
 
 (setq auto-save-file-name-transforms
       `((".*" ,"~/.emacs_backups" t)))
+
+;; Remove scrollbars, menu bars, and toolbars
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;;Resize
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -24,12 +28,9 @@
 ;;Show selected text.
 (setq-default transient-mark-mode t)
 
-
 ;;Package Management
 (load "~/.tuemacs.d/my-loadpackages.el")
-(add-hook 'after-init-hook '(lambda ()
-  (load "~/.tuemacs.d/my-noexternals.el")
-  ))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -58,14 +59,13 @@
 
 (setq org-src-fontify-natively t)
 
-;;Hacked around this in iterm2. Why doesn't it work?
-;;(setq mac-option-key-is-meta t)
-;;(setq mac-command-key-is-meta t)
-;;(setq mac-command-modifier 'meta)
-;;(setq mac-option-modifier 'alt)
+;;Note this is no good in terminal mode.
+(global-set-key (kbd "C-S-n")
+    (lambda () (interactive) (forward-line  7)))
+(global-set-key (kbd "C-S-p")
+    (lambda () (interactive) (forward-line -7)))
 
-;;Why doesnt this work with C-S-n
-(global-set-key (kbd "M-n")
-    (lambda () (interactive) (forward-line  5)))
-(global-set-key (kbd "M-p")
-    (lambda () (interactive) (forward-line -5)))
+(when (eq system-type 'darwin)  ; mac specific bindings
+  (setq mac-right-command-modifier 'meta));Right command is meta
+
+

@@ -1,5 +1,3 @@
-;;Backup Files
-
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
@@ -52,10 +50,6 @@
 
 (load-theme 'monokai t)
 
-;;Fix iedit bug in Mac
-;;(define-key global-map (kbd "C-c ;") 'iedit-mode)
-
-
 (require 'org-install)
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -75,5 +69,3 @@
     (lambda () (interactive) (forward-line  5)))
 (global-set-key (kbd "M-p")
     (lambda () (interactive) (forward-line -5)))
-
-

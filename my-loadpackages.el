@@ -1,10 +1,9 @@
-; ~/.tuemacs.d/my-loadpackages.el
-
 ;;loading package
 (load "~/.tuemacs.d/my-packages.el")
 (require 'doremi)
 (require 'color-theme)
 (require 'magit)			
+
 (define-key global-map (kbd "C-c m") 'magit-status)
 
 ;; (require 'yasnippet)
@@ -13,7 +12,6 @@
 ;; (add-hook 'term-mode-hook (lambda()
 ;; 			    (setq yas-dont-activate t)))
  
-
 (require 'key-chord)
 (setq key-chord-two-keys-delay .05
       key-chord-one-key-delay .020)
@@ -76,7 +74,4 @@
 (require 'helm-swoop)
 (global-set-key (kbd "M-s") 'helm-swoop)
 
-
 (require 'xcscope)
-
-

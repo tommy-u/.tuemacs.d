@@ -1,7 +1,10 @@
 ;;loading package
 (load "~/.tuemacs.d/my-packages.el")
+
 (require 'doremi)
+
 (require 'color-theme)
+
 (require 'magit)			
 
 (define-key global-map (kbd "C-c m") 'magit-status)
@@ -17,6 +20,7 @@
       key-chord-one-key-delay .020)
 
 (key-chord-mode 1)
+(key-chord-define-global "qw"     "~") ;;
 (key-chord-define-global "df"     "\C-m") ;;
 (key-chord-define-global "jk"     "\C-m") ;;Ret
 (key-chord-define-global "io"     "\C-i") ;;
@@ -46,7 +50,17 @@
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
 
-;; Enable mouse support
+(require 'org-install)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((C . true) (python . true))
+ )
+
+(setq org-src-fontify-natively t)
+
+
+
+;; Enable mouse support--
 (unless window-system
   (require 'mouse)
   (xterm-mouse-mode t)

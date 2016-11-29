@@ -51,20 +51,13 @@
 
 (load-theme 'monokai t)
 
-(require 'org-install)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((C . true) (python . true))
- )
-
-(setq org-src-fontify-natively t)
-
 ;;Note this is no good in terminal mode.
 (global-set-key (kbd "C-S-n")
     (lambda () (interactive) (forward-line  7)))
 (global-set-key (kbd "C-S-p")
     (lambda () (interactive) (forward-line -7)))
 
+;;Modifiers
 (when (eq system-type 'darwin)  ; mac specific bindings
   (setq mac-right-command-modifier 'meta));Right command is meta
 

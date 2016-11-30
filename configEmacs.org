@@ -6,3 +6,4 @@
 ** TODO Try out EVIL mode
 ** Figure out after init hook.
 ** Smooth scroll
+** Remap speedbar

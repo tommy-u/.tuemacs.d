@@ -24,6 +24,8 @@
     sr-speedbar
     xcscope
     company
+    default-text-scale
+    flycheck
     ) "a list of packages to ensure are installed at launch.")
 
 					; method to check if all packages are installed
@@ -53,7 +55,7 @@
 
 (require 'color-theme)
 
-(require 'magit)			
+(require 'magit)
 
 (define-key global-map (kbd "C-c m") 'magit-status)
 
@@ -137,3 +139,12 @@
 (require 'xcscope)
 
 (require 'company)
+
+(require 'default-text-scale)
+
+(global-set-key (kbd "C-M-=") 'default-text-scale-increase)
+(global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+

@@ -1,13 +1,8 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
-** TODO Create repo
-
-** TODO Remap meta to control
+** Org mode next line indent in / out
 ** TODO Remap return to control
-** DONE Get Chords working on local machine
-   CLOSED: [2016-11-27 Sun 16:34]
 ** TODO Try out EVIL mode
-** Prevent melpa from storing package data in .emacs.d (change name of this repo)?
-** Change dot file to init.el
 ** Figure out after init hook.
+** Smooth scroll

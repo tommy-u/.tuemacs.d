@@ -29,7 +29,7 @@
 (setq-default transient-mark-mode t)
 
 ;;Package Management
-(load "~/.tuemacs.d/my-loadpackages.el")
+(load "~/.tuemacs.d/packages.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -53,9 +53,9 @@
 
 ;;Note this is no good in terminal mode.
 (global-set-key (kbd "C-S-n")
-    (lambda () (interactive) (forward-line  7)))
+		(lambda () (interactive) (forward-line  7)))
 (global-set-key (kbd "C-S-p")
-    (lambda () (interactive) (forward-line -7)))
+		(lambda () (interactive) (forward-line -7)))
 
 ;;Modifiers
 (when (eq system-type 'darwin)  ; mac specific bindings

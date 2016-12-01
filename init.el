@@ -11,6 +11,9 @@
 (setq auto-save-file-name-transforms
       `((".*" ,"~/.emacs_backups" t)))
 
+;; Should do this once a day. 
+(setq confirm-kill-emacs 'y-or-n-p)
+
 ;; Remove scrollbars, menu bars, and toolbars
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))

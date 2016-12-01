@@ -7,3 +7,4 @@
 ** Figure out after init hook.
 ** Smooth scroll
 ** Remap speedbar
+** Resolve package writing to .emacs.

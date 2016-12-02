@@ -12,3 +12,10 @@
 ** Flycheck on remote files
 *** and on csa
 ** Case helm & others on emacs version.
+** indent org mode by default.
+
+*Look into
+** Company
+** Icicles
+** Bookmarks
+** Fix mouse & clipboard

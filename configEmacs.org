@@ -10,4 +10,5 @@
 ** Resolve package writing to .emacs.
 ** Tramp mode search for file automatically in current dir
 ** Flycheck on remote files
+*** and on csa
 ** Case helm & others on emacs version.

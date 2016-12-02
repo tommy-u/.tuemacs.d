@@ -6,4 +6,16 @@
 ** TODO Try out EVIL mode
 ** Figure out after init hook.
 ** Smooth scroll
-** Remap speedbar
+** Remap speedbar-resize
+** Resolve package writing to .emacs.
+** Tramp mode search for file automatically in current dir
+** Flycheck on remote files
+*** and on csa
+** Case helm & others on emacs version.
+** indent org mode by default.
+
+*Look into
+** Company
+** Icicles
+** Bookmarks
+** Fix mouse & clipboard

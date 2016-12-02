@@ -6,5 +6,8 @@
 ** TODO Try out EVIL mode
 ** Figure out after init hook.
 ** Smooth scroll
-** Remap speedbar
+** Remap speedbar-resize
 ** Resolve package writing to .emacs.
+** Tramp mode search for file automatically in current dir
+** Flycheck on remote files
+** Case helm & others on emacs version.

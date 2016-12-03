@@ -13,8 +13,11 @@
 *** and on csa
 ** Case helm & others on emacs version.
 ** indent org mode by default.
+** Undo tree
+** Minimap
+** Multiple cursors
 
-*Look into
+* Look into
 ** Company
 ** Icicles
 ** Bookmarks

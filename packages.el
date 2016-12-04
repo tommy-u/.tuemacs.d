@@ -11,6 +11,7 @@
 
 (defvar required-packages
   '(
+    yasnippet
     monokai-theme
     doremi
     doremi-cmd
@@ -28,6 +29,7 @@
     company
     default-text-scale
     flycheck
+    company
     ) "a list of packages to ensure are installed at launch.")
 
 ;; method to check if all packages are installed
@@ -155,3 +157,30 @@
           (lambda ()
             (unless (tramp-tramp-file-p (buffer-file-name))
               (flycheck-mode))))
+
+(setq org-hide-leading-stars t)
+
+(require 'yasnippet)
+(yas-reload-all)
+
+(add-hook 'c-mode-common-hook #'yas-minor-mode)
+(provide 'init-yasnippet)
+
+(require 'company)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(setq company-dabbrev-downcase 0)
+(setq company-idle-delay 0)
+
+(defun tab-indent-or-complete ()
+  (interactive)
+  (if (minibufferp)
+      (minibuffer-complete)
+    (if (or (not yas-minor-mode)
+            (null (do-yas-expand)))
+        (if (check-expansion)
+            (company-complete-common)
+          (indent-for-tab-command)))))
+
+(global-set-key [backtab] 'tab-indent-or-complete)

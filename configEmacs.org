@@ -18,6 +18,8 @@
 ** Multiple cursors
 ** buffer-alist make shell open in same buffer as called in.
 ** Don't allow dirtying of .emacs.d
+** Startup with eshell running
+** Email
 
 * Look into
 ** Company

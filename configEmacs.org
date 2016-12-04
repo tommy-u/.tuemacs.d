@@ -16,6 +16,7 @@
 ** Undo tree
 ** Minimap
 ** Multiple cursors
+** buffer-alist make shell open in same buffer as called in.
 
 * Look into
 ** Company

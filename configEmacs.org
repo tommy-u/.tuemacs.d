@@ -17,6 +17,7 @@
 ** Minimap
 ** Multiple cursors
 ** buffer-alist make shell open in same buffer as called in.
+** Don't allow dirtying of .emacs.d
 
 * Look into
 ** Company

@@ -1,12 +1,11 @@
-;;; Words
+;;;
 
 (require 'cl)
 
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;;(add-to-list 'package-archives
-;;             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (package-initialize)
 
 (defvar required-packages
@@ -24,12 +23,14 @@
     helm
     helm-swoop
     helm-gtags
+    helm-flyspell
     sr-speedbar
     xcscope
     company
     default-text-scale
     flycheck
     company
+    undo-tree
     ) "a list of packages to ensure are installed at launch.")
 
 ;; method to check if all packages are installed
@@ -71,8 +72,10 @@
 (key-chord-define-global "qw"     "~") ;;
 (key-chord-define-global "df"     "\C-m") ;;
 (key-chord-define-global "jk"     "\C-m") ;;Ret
-(key-chord-define-global "io"     "\C-i") ;;
+;;(key-chord-define-global "io"     "\C-i") ;;
 (key-chord-define-global "we"     "\C-i") ;;Tab
+
+
 
 (key-chord-define-global " q"     'sr-speedbar-toggle)
 
@@ -185,7 +188,22 @@
 
 (global-set-key [backtab] 'tab-indent-or-complete)
 
+
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;;turn on everywhere
+(global-undo-tree-mode 1)
+;; make ctrl-z undo
+(global-set-key (kbd "C-z") 'undo)
+;; make ctrl-Z redo
+(defalias 'redo 'undo-tree-redo)
+(global-set-key (kbd "C-S-z") 'redo)
+
+(require 'helm-flyspell)
+(key-chord-define-global "ji"     'helm-flyspell-correct) ;;Spelling
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+

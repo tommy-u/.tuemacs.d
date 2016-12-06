@@ -23,9 +23,9 @@
 ** Startup with eshell running
 ** Email
 ** Projectile
+** hippie-expand
 
 * Look into
-** Company
 ** Icicles
 ** Bookmarks
 ** Fix mouse & clipboard

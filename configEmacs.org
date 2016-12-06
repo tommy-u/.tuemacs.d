@@ -33,9 +33,7 @@
 ** Beamer Presentation
 
 ** More helm stuff to look into.
-   (setq helm-buffers-fuzzy-matching t
-   helm-recentf-fuzzy-match    t)
-   (setq helm-M-x-fuzzy-match t)
+  
    helm-ff-do-grep, live grep in Helm
    helm-semantic-or-imenu
    helm-find

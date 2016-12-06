@@ -9,7 +9,6 @@
   '(
     yasnippet
     monokai-theme
-    doremi
     evil
     magit
     key-chord

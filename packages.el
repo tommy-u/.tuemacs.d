@@ -7,6 +7,7 @@
 
 (defvar required-packages
   '(
+    avy
     aggressive-indent
     hydra
     projectile
@@ -50,6 +51,7 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (require 'helm-flx)
 (helm-flx-mode +1)
 
@@ -79,7 +81,7 @@
 (key-chord-mode 1)
 (key-chord-define-global "qw"     "~") ;;
 (key-chord-define-global "df"     "\C-m") ;;
-(key-chord-define-global "jk"     "\C-m") ;;Ret
+
 (key-chord-define-global "we"     "\C-i") ;;Tab
 
 (key-chord-define-global " q"     'sr-speedbar-toggle)
@@ -98,6 +100,13 @@
 (key-chord-define-global "kl"     'windmove-right)
 (key-chord-define-global "sf"     'windmove-down)
 (key-chord-define-global "jl"     'windmove-up)
+
+;;Avy
+(require 'avy)
+;;(setq avy-keys      '(?c ?a ?s ?d ?e ?f ?h ?w ?y ?j ?k ?l ?n ?m ?v ?r ?u ?p))
+;;(global-set-key (kbd "M-s") #'avy-goto-word-1)
+(key-chord-define-global "jk"     'avy-goto-word-1)
+
 
 ;;Org
 (require 'org)

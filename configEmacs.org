@@ -25,6 +25,7 @@
 ** Projectile
 
 * Look into
+** Ace-jump mode
 ** Company
 ** Icicles
 ** Bookmarks
@@ -45,4 +46,4 @@
    helm-eval-expression-with-eldoc
    (require 'helm-descbinds)
    (helm-descbinds-mode)
-   
+   helm-flx

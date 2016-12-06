@@ -2,11 +2,8 @@
 
 (require 'cl)
 
-(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-(package-initialize)
 
 (defvar required-packages
   '(
@@ -125,7 +122,6 @@
   (setq mouse-sel-mode t)
   ;;(setq select-active-regions nil)
   ;;(setq mouse-drag-copy-region t)
-  ;;(global-set-key [mouse-2] 'mouse-yank-at-click)
   )
 
 

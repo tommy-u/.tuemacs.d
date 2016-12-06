@@ -85,7 +85,7 @@ Do this after `q` in Debugger buffer."
 (setq doc-view-continuous t)
 
 
-;; scroll one line at a time (less "jumpy" than defaults)
+;;scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; one line at a time
 
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling

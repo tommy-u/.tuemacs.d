@@ -20,6 +20,8 @@
     helm-swoop
     helm-gtags
     helm-flyspell
+    diff-hl
+    helm-flx
     sr-speedbar
     xcscope
     company
@@ -48,6 +50,14 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'helm-flx)
+(helm-flx-mode +1)
+
+(require 'diff-hl)
+(global-diff-hl-mode)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+
 (require 'aggressive-indent)
 
 (global-aggressive-indent-mode 1)

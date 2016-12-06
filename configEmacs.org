@@ -23,10 +23,10 @@
 ** Startup with eshell running
 ** Email
 ** Projectile
+** hippie-expand
 
 * Look into
 ** Ace-jump mode
-** Company
 ** Icicles
 ** Bookmarks
 ** Fix mouse & clipboard

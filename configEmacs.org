@@ -21,6 +21,7 @@
 ** Don't allow dirtying of .emacs.d
 ** Startup with eshell running
 ** Email
+** Projectile
 
 * Look into
 ** Company

@@ -1,6 +1,7 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
+
 ** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
 ** Org mode next line indent in / out
 ** TODO Remap return to control
@@ -29,3 +30,19 @@
 ** Bookmarks
 ** Fix mouse & clipboard
 ** Beamer Presentation
+
+** More helm stuff to look into.
+   (setq helm-buffers-fuzzy-matching t
+   helm-recentf-fuzzy-match    t)
+   (setq helm-M-x-fuzzy-match t)
+   helm-ff-do-grep, live grep in Helm
+   helm-semantic-or-imenu
+   helm-find
+   helm-info-*
+   helm-top
+   helm-surfraw
+   (global-set-key (kbd "C-c h g") 'helm-google-suggest)
+   helm-eval-expression-with-eldoc
+   (require 'helm-descbinds)
+   (helm-descbinds-mode)
+   

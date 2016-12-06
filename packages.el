@@ -7,6 +7,9 @@
 
 (defvar required-packages
   '(
+    aggressive-indent
+    hydra
+    projectile
     yasnippet
     monokai-theme
     evil
@@ -45,6 +48,15 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'aggressive-indent)
+
+(global-aggressive-indent-mode 1)
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'python-mode)
+
+(require 'hydra)
+
+(require 'projectile)
 
 (require 'magit)
 
@@ -118,23 +130,6 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list) ; make Replace buffer list
 (global-set-key (kbd "M-y") 'helm-show-kill-ring) ; make Replace buffer list
 
-;;More helm stuff to look into.
-
-;;(setq helm-buffers-fuzzy-matching t
-;;      helm-recentf-fuzzy-match    t)
-;;(setq helm-M-x-fuzzy-match t)
-
-;; helm-ff-do-grep, live grep in Helm
-;;helm-semantic-or-imenu
-;;helm-find
-;;helm-info-*
-;;helm-top
-;;helm-surfraw
-
-;;(global-set-key (kbd "C-c h g") 'helm-google-suggest)
-;;helm-eval-expression-with-eldoc
-;;(require 'helm-descbinds)
-;;(helm-descbinds-mode)
 
 (require 'helm-swoop)
 (global-set-key (kbd "M-s") 'helm-swoop)

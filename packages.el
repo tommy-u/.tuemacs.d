@@ -10,9 +10,6 @@
     yasnippet
     monokai-theme
     doremi
-    doremi-cmd
-    color-theme
-    iedit
     evil
     magit
     key-chord
@@ -48,14 +45,7 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-;;loading packages
-(require 'doremi)
-
-(require 'color-theme)
 
 (require 'magit)
 
@@ -69,10 +59,7 @@
 (key-chord-define-global "qw"     "~") ;;
 (key-chord-define-global "df"     "\C-m") ;;
 (key-chord-define-global "jk"     "\C-m") ;;Ret
-;;(key-chord-define-global "io"     "\C-i") ;;
 (key-chord-define-global "we"     "\C-i") ;;Tab
-
-
 
 (key-chord-define-global " q"     'sr-speedbar-toggle)
 
@@ -80,7 +67,6 @@
 (key-chord-define-global "12"     'kmacro-start-macro)
 (key-chord-define-global "90"     'kmacro-end-or-call-macro)
 (key-chord-define-global "-="     "\M-0\C-xe") ;;Play to end.
-;;(key-chord-define-global "=1"     "") ;;Find way to undo all.
 
 ;; Wind-move
 (key-chord-define-global "2f"     "\C-x2")
@@ -96,7 +82,9 @@
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+
 (setq org-log-done t)
+(setq org-hide-leading-stars t)
 
 (require 'org-install)
 (org-babel-do-load-languages
@@ -106,9 +94,7 @@
 
 (setq org-src-fontify-natively t)
 
-
-
-;; Enable mouse support--
+;; Enable some mouse support--
 (unless window-system
   (require 'mouse)
   (xterm-mouse-mode t)
@@ -124,7 +110,6 @@
   ;;(setq mouse-drag-copy-region t)
   )
 
-
 (require 'helm)
 (require 'helm-config)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -134,14 +119,35 @@
 (global-set-key (kbd "C-x b") 'helm-buffers-list) ; make Replace buffer list
 (global-set-key (kbd "M-y") 'helm-show-kill-ring) ; make Replace buffer list
 
+;;More helm stuff to look into.
+
+;;(setq helm-buffers-fuzzy-matching t
+;;      helm-recentf-fuzzy-match    t)
+;;(setq helm-M-x-fuzzy-match t)
+
+;; helm-ff-do-grep, live grep in Helm
+;;helm-semantic-or-imenu
+;;helm-find
+;;helm-info-*
+;;helm-top
+;;helm-surfraw
+
+;;(global-set-key (kbd "C-c h g") 'helm-google-suggest)
+;;helm-eval-expression-with-eldoc
+;;(require 'helm-descbinds)
+;;(helm-descbinds-mode)
+
 (require 'helm-swoop)
 (global-set-key (kbd "M-s") 'helm-swoop)
 
 (require 'helm-gtags)
 
-(require 'xcscope)
+(require 'helm-flyspell)
+(key-chord-define-global "ji"     'helm-flyspell-correct) ;;Spelling
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-(require 'company)
+(require 'xcscope)
 
 (require 'default-text-scale)
 
@@ -156,8 +162,6 @@
           (lambda ()
             (unless (tramp-tramp-file-p (buffer-file-name))
               (flycheck-mode))))
-
-(setq org-hide-leading-stars t)
 
 (require 'yasnippet)
 (yas-reload-all)
@@ -184,7 +188,6 @@
 
 (global-set-key [backtab] 'tab-indent-or-complete)
 
-
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
@@ -198,8 +201,4 @@
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "C-S-z") 'redo)
 
-(require 'helm-flyspell)
-(key-chord-define-global "ji"     'helm-flyspell-correct) ;;Spelling
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 

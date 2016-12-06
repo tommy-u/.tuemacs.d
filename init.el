@@ -1,7 +1,4 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+;;Configuration of vanilla emacs. No external package.
 
 (package-initialize)
 
@@ -64,7 +61,7 @@
 (when (eq system-type 'darwin)  ; mac specific bindings
   (setq mac-right-command-modifier 'meta));Right command is meta
 
-
+;;Allows closing all gud buffers.
 (defvar all-gud-modes
   '(gud-mode comint-mode gdb-locals-mode gdb-frames-mode  gdb-breakpoints-mode)
   "A list of modes when using gdb")
@@ -92,5 +89,5 @@ Do this after `q` in Debugger buffer."
 
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
-(setq scroll-step 1) ;; keyboard scroll one line at a time
+;;(setq scroll-step 1) ;; keyboard scroll one line at a time
 

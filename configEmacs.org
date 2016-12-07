@@ -1,7 +1,8 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
-
+** Learn enough lisp to clean up files. 
+** Manage buffers smarter
 ** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
 ** Org mode next line indent in / out
 ** TODO Remap return to control

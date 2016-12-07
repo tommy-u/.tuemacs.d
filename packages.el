@@ -10,7 +10,6 @@
     avy
     aggressive-indent
     hydra
-    projectile
     yasnippet
     monokai-theme
     evil
@@ -21,9 +20,11 @@
     helm-swoop
     helm-gtags
     helm-flyspell
+    helm-flx
+    helm-descbinds
+    helm-projectile    
     diff-hl
     w3m
-    helm-flx
     sr-speedbar
     xcscope
     company
@@ -55,14 +56,6 @@
 
 ;;w3m
 (require 'w3m)
-
-(require 'helm-flx)
-(helm-flx-mode +1)
-
-(require 'diff-hl)
-(global-diff-hl-mode)
-(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-
 
 (require 'aggressive-indent)
 
@@ -146,8 +139,6 @@
 
 (require 'helm)
 
-(require 'helm-config)
-
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
@@ -160,21 +151,45 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to do persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(global-set-key (kbd "C-x b") 'helm-buffers-list) ; make Replace buffer list
-(global-set-key (kbd "M-y") 'helm-show-kill-ring) ; make Replace buffer list
 
+;;Cleanup helm sizing.
+(setq helm-display-header-line nil)
+(set-face-attribute 'helm-source-header nil :height 0.1)
+(helm-autoresize-mode 1)
+(setq helm-autoresize-max-height 30)
+(setq helm-autoresize-min-height 30)
+
+(require 'helm-config)
+(require 'helm-gtags)
+
+(require 'helm-flx)
+(helm-flx-mode +1)
+
+(require 'diff-hl)
+(global-diff-hl-mode)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh) 
 
 (require 'helm-swoop)
-(global-set-key (kbd "M-s") 'helm-swoop)
-
-(require 'helm-gtags)
+(global-set-key (kbd "C-s") 'helm-swoop)
 
 (require 'helm-flyspell)
 (key-chord-define-global "ji"     'helm-flyspell-correct) ;;Spelling
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+(require 'helm-projectile)
+
+(global-set-key (kbd "C-h f") 'helm-apropos)
+(define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring)
+(setq projectile-completion-system 'helm)
+(helm-descbinds-mode)
+(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+
+;; enable Helm version of Projectile with replacement commands
+(helm-projectile-on)
 
 (require 'xcscope)
 
@@ -230,4 +245,5 @@
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "C-S-z") 'redo)
 
-
+(provide 'packages)
+;;; packages.el ends here

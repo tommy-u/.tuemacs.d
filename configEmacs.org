@@ -1,7 +1,7 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
-
+** Don't change anything for a week unless you have a "good reason".
 ** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
 ** Org mode next line indent in / out
 ** TODO Remap return to control

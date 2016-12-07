@@ -7,6 +7,7 @@
 
 (defvar required-packages
   '(
+    nyan-mode
     avy
     aggressive-indent
     hydra
@@ -53,6 +54,11 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Nyan cat.
+(nyan-mode 1)
+(setq nyan-wavy-trail nil)
+(setq nyan-animate-nyancat t)
 
 ;;w3m
 (require 'w3m)
@@ -198,6 +204,8 @@
 
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
+(default-text-scale-increase)
+(default-text-scale-increase)
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)

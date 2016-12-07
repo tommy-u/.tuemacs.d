@@ -22,6 +22,7 @@
     helm-gtags
     helm-flyspell
     diff-hl
+
     helm-flx
     sr-speedbar
     xcscope

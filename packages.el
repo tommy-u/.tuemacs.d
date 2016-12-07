@@ -22,7 +22,7 @@
     helm-gtags
     helm-flyspell
     diff-hl
-
+    w3m
     helm-flx
     sr-speedbar
     xcscope
@@ -52,6 +52,9 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;w3m
+(require 'w3m)
 
 (require 'helm-flx)
 (helm-flx-mode +1)

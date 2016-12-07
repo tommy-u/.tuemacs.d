@@ -22,6 +22,8 @@
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
+(global-set-key (kbd "C-j") 'keyboard-quit)
+
 ;;Compile.
 (global-set-key (kbd "C-c j") 'compile)
 

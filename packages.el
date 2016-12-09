@@ -23,7 +23,7 @@
     helm-flyspell
     helm-flx
     helm-descbinds
-    helm-projectile    
+    helm-projectile
     diff-hl
     w3m
     sr-speedbar
@@ -33,7 +33,7 @@
     flycheck
     company
     undo-tree
-    ) "a list of packages to ensure are installed at launch.")
+    ) "A list of packages to ensure are installed at launch.")
 
 ;; method to check if all packages are installed
 (defun packages-installed-p ()
@@ -106,8 +106,6 @@
 
 ;;Avy
 (require 'avy)
-;;(setq avy-keys      '(?c ?a ?s ?d ?e ?f ?h ?w ?y ?j ?k ?l ?n ?m ?v ?r ?u ?p))
-;;(global-set-key (kbd "M-s") #'avy-goto-word-1)
 (key-chord-define-global "jk"     'avy-goto-word-1)
 
 

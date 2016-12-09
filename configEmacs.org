@@ -4,17 +4,12 @@
 ** Don't change anything for a week unless you have a "good reason".
 ** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
 ** Org mode next line indent in / out
-** TODO Remap return to control
 ** Resolve package writing to .emacs.
 ** Flycheck on remote files
 *** and on csa
 ** Case helm & others on emacs version.
-** Undo tree
-** Multiple cursors
-** buffer-alist make shell open in same buffer as called in.
 ** Startup with eshell running
 ** Email
-** Projectile
 ** hippie-expand
 ** Fix mouse & clipboard
 
@@ -23,7 +18,6 @@
 ** Beamer Presentation
 
 ** More helm stuff to look into.
-
    helm-ff-do-grep, live grep in Helm
    helm-semantic-or-imenu
    helm-info-*

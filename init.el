@@ -121,6 +121,9 @@ Do this after `q` in Debugger buffer."
 (add-hook 'minibuffer-setup-hook #'my-minibuffer-setup-hook)
 (add-hook 'minibuffer-exit-hook #'my-minibuffer-exit-hook)
 
+;;All below this point is a massive kludge to open a shell
+;;in the current window. Needs to be eliminated, but maybe
+;;after finals...
 (require 'shell)
 
 (defun shell-get-buffer-create (&optional buffer)

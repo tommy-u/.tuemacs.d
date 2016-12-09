@@ -28,15 +28,14 @@
     w3m
     sr-speedbar
     xcscope
-    company
     default-text-scale
     flycheck
     company
     undo-tree
     ) "A list of packages to ensure are installed at launch.")
 
-;; method to check if all packages are installed
 (defun packages-installed-p ()
+  "Method to check if all packages are installed."
   (loop for p in required-packages
         when (not (package-installed-p p)) do (return nil)
         finally (return t)))
@@ -55,12 +54,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Nyan cat.
 (nyan-mode 1)
-(setq nyan-wavy-trail nil)
-(setq nyan-animate-nyancat t)
 
-;;w3m
 (require 'w3m)
 
 (require 'aggressive-indent)
@@ -104,12 +99,10 @@
 (key-chord-define-global "sf"     'windmove-down)
 (key-chord-define-global "jl"     'windmove-up)
 
-;;Avy
 (require 'avy)
 (key-chord-define-global "jk"     'avy-goto-word-1)
 
 
-;;Org
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
@@ -175,7 +168,7 @@
 
 (require 'diff-hl)
 (global-diff-hl-mode)
-(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh) 
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 (require 'helm-swoop)
 (global-set-key (kbd "C-s") 'helm-swoop)

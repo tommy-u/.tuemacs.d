@@ -1,47 +1,33 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
-
+** Don't change anything for a week unless you have a "good reason".
 ** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
 ** Org mode next line indent in / out
 ** TODO Remap return to control
-** TODO Try out EVIL mode
-** Figure out after init hook.
-** Smooth scroll
-** Remap speedbar-resize
 ** Resolve package writing to .emacs.
-** Tramp mode search for file automatically in current dir
 ** Flycheck on remote files
 *** and on csa
 ** Case helm & others on emacs version.
-** indent org mode by default.
 ** Undo tree
-** Minimap
 ** Multiple cursors
 ** buffer-alist make shell open in same buffer as called in.
-** Don't allow dirtying of .emacs.d
 ** Startup with eshell running
 ** Email
 ** Projectile
 ** hippie-expand
+** Fix mouse & clipboard
 
 * Look into
-** Ace-jump mode
 ** Icicles
-** Bookmarks
-** Fix mouse & clipboard
 ** Beamer Presentation
 
 ** More helm stuff to look into.
-  
+
    helm-ff-do-grep, live grep in Helm
    helm-semantic-or-imenu
-   helm-find
    helm-info-*
    helm-top
    helm-surfraw
    (global-set-key (kbd "C-c h g") 'helm-google-suggest)
    helm-eval-expression-with-eldoc
-   (require 'helm-descbinds)
-   (helm-descbinds-mode)
-   helm-flx

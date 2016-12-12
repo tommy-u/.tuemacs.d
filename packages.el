@@ -10,10 +10,7 @@
     nyan-mode
     avy
     aggressive-indent
-    hydra
-    yasnippet
     monokai-theme
-    evil
     magit
     key-chord
     multiple-cursors
@@ -21,16 +18,12 @@
     helm-swoop
     helm-gtags
     helm-flyspell
-    helm-flx
     helm-descbinds
-    helm-projectile
     diff-hl
-    w3m
+    helm-projectile 
     sr-speedbar
-    xcscope
     default-text-scale
     flycheck
-    company
     undo-tree
     ) "A list of packages to ensure are installed at launch.")
 
@@ -43,7 +36,6 @@
 ;; if not all packages are installed, check one by one and install the missing ones.
 (unless (packages-installed-p)
   ;; check for new packages (package versions)
-
   (message "%s" "Emacs is now refreshing its package database...")
   (package-refresh-contents)
   (message "%s" " done.")
@@ -54,34 +46,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(nyan-mode 1)
-
-(require 'w3m)
-
 (require 'aggressive-indent)
 
 (global-aggressive-indent-mode 1)
 (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
 
-(require 'hydra)
-
-(require 'projectile)
-
 (require 'magit)
 
 (define-key global-map (kbd "C-c m") 'magit-status)
 
+;; Maybe this would make a good hydra?
 (require 'key-chord)
 (setq key-chord-two-keys-delay .05
       key-chord-one-key-delay .020)
 
 (key-chord-mode 1)
-(key-chord-define-global "qw"     "~") ;;
-(key-chord-define-global "df"     "\C-m") ;;
-
+(key-chord-define-global "qw"     "~")
+(key-chord-define-global "df"     "\C-m") ;;Ret
 (key-chord-define-global "we"     "\C-i") ;;Tab
-
 (key-chord-define-global " q"     'sr-speedbar-toggle)
 
 ;;Macros
@@ -102,15 +85,9 @@
 (require 'avy)
 (key-chord-define-global "jk"     'avy-goto-word-1)
 
-
-(require 'org)
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-
-(setq org-log-done t)
+(require 'org-install)
 (setq org-hide-leading-stars t)
 
-(require 'org-install)
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((C . true) (python . true))
@@ -130,21 +107,9 @@
 			      (scroll-up 1)))
   (defun track-mouse (e))
   (setq mouse-sel-mode t)
-  ;;(setq select-active-regions nil)
-  ;;(setq mouse-drag-copy-region t)
   )
 
 (require 'helm)
-
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-      helm-ff-file-name-history-use-recentf t
-      helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match    t
-      helm-M-x-fuzzy-match t
-      helm-echo-input-in-header-line t)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -154,17 +119,11 @@
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 
 ;;Cleanup helm sizing.
-(setq helm-display-header-line nil)
-(set-face-attribute 'helm-source-header nil :height 0.1)
 (helm-autoresize-mode 1)
 (setq helm-autoresize-max-height 30)
 (setq helm-autoresize-min-height 30)
 
-(require 'helm-config)
 (require 'helm-gtags)
-
-(require 'helm-flx)
-(helm-flx-mode +1)
 
 (require 'diff-hl)
 (global-diff-hl-mode)
@@ -181,15 +140,11 @@
 (require 'helm-projectile)
 
 (global-set-key (kbd "C-h f") 'helm-apropos)
-(define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring)
 (setq projectile-completion-system 'helm)
-(helm-descbinds-mode)
-(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
 ;; enable Helm version of Projectile with replacement commands
 (helm-projectile-on)
 
-(require 'xcscope)
 
 (require 'default-text-scale)
 
@@ -201,36 +156,10 @@
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(require 'tramp)
 (add-hook 'find-file-hook
           (lambda ()
             (unless (tramp-tramp-file-p (buffer-file-name))
               (flycheck-mode))))
-
-(require 'yasnippet)
-(yas-reload-all)
-
-(add-hook 'c-mode-common-hook #'yas-minor-mode)
-(provide 'init-yasnippet)
-
-(require 'company)
-
-(add-hook 'after-init-hook 'global-company-mode)
-
-(setq company-dabbrev-downcase 0)
-(setq company-idle-delay 0)
-
-(defun tab-indent-or-complete ()
-  (interactive)
-  (if (minibufferp)
-      (minibuffer-complete)
-    (if (or (not yas-minor-mode)
-            (null (do-yas-expand)))
-        (if (check-expansion)
-            (company-complete-common)
-          (indent-for-tab-command)))))
-
-(global-set-key [backtab] 'tab-indent-or-complete)
 
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)

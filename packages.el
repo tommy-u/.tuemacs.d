@@ -7,6 +7,7 @@
 
 (defvar required-packages
   '(
+    expand-region
     nyan-mode
     avy
     aggressive-indent
@@ -20,7 +21,7 @@
     helm-flyspell
     helm-descbinds
     diff-hl
-    helm-projectile 
+    helm-projectile
     sr-speedbar
     default-text-scale
     flycheck
@@ -46,11 +47,15 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'expand-region)
+(pending-delete-mode t)
+(define-key global-map (kbd "C-i") 'er/expand-region)
+
 (require 'aggressive-indent)
 
 (global-aggressive-indent-mode 1)
-(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 (add-to-list 'aggressive-indent-excluded-modes 'python-mode)
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
 (require 'magit)
 
@@ -59,13 +64,28 @@
 ;; Maybe this would make a good hydra?
 (require 'key-chord)
 (setq key-chord-two-keys-delay .05
-      key-chord-one-key-delay .020)
+      key-chord-one-key-delay .18)
 
 (key-chord-mode 1)
 (key-chord-define-global "qw"     "~")
 (key-chord-define-global "df"     "\C-m") ;;Ret
 (key-chord-define-global "we"     "\C-i") ;;Tab
 (key-chord-define-global " q"     'sr-speedbar-toggle)
+(key-chord-define-global "jo"     'delete-backward-char)
+(key-chord-define-global "fw"     'delete-forward-char)
+
+;;Commonly used fns.
+(key-chord-define-global "uu"     'undo-tree-visualize)
+(key-chord-define-global "xx"     'helm-M-x)
+(key-chord-define-global "cc"     'magit-status)
+(key-chord-define-global "dd"     'helm-descbinds)
+(key-chord-define-global "yy"     'helm-show-kill-ring)
+(key-chord-define-global "ee"     'eval-last-sexp)
+;;(key-chord-define-global "ff"     'keyboard-quit)
+(key-chord-define-global "hh"     'finder-by-keyword)
+(key-chord-define-global "ss"     'helm-swoop)
+(key-chord-define-global "ww"     'save-buffer)
+;;(key-chord-define-global ""     'er/expand-region)
 
 ;;Macros
 (key-chord-define-global "12"     'kmacro-start-macro)

@@ -1,7 +1,4 @@
 # .tuemacs.d
-My messy emacs configuration files.
-
-Credit to http://y.tsutsumi.io/emacs-from-scratch-part-2-package-management.html for the automatic install checking on startup. 
 
 Notes:
 

@@ -1,27 +1,14 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
-** Don't change anything for a week unless you have a "good reason".
 ** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
 ** Org mode next line indent in / out
 ** Resolve package writing to .emacs.
-** Flycheck on remote files
-*** and on csa
 ** Case helm & others on emacs version.
 ** Startup with eshell running
-** Email
-** hippie-expand
+
 ** Fix mouse & clipboard
 
 * Look into
 ** Icicles
 ** Beamer Presentation
-
-** More helm stuff to look into.
-   helm-ff-do-grep, live grep in Helm
-   helm-semantic-or-imenu
-   helm-info-*
-   helm-top
-   helm-surfraw
-   (global-set-key (kbd "C-c h g") 'helm-google-suggest)
-   helm-eval-expression-with-eldoc

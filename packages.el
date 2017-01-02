@@ -26,6 +26,8 @@
     default-text-scale
     flycheck
     undo-tree
+    hydra
+    company
     ) "A list of packages to ensure are installed at launch.")
 
 (defun packages-installed-p ()
@@ -46,10 +48,86 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;(key-chord-define-global "
+
+(require 'hydra)
+
+(key-chord-define-global
+ "jk"
+ (defhydra hydra-move
+   (:pre
+    (set-cursor-color "#40e0d0")
+    :post
+    (set-cursor-color "#ffffff")
+    )
+   "move"
+   ("j" next-line)
+   ("k" previous-line)
+   ("l" forward-char)
+   ("h" backward-char)   
+   ("J" (lambda () (interactive) (forward-line  8)))
+   ("K" (lambda () (interactive) (forward-line -8)))
+   ("L" forward-word)
+   ("H" backward-word)
+   ("a" beginning-of-line)
+   ("e" move-end-of-line)
+   ("i" kill-line)
+   ("y" yank)
+   ("m" set-mark-command)
+   ("w" kill-region)
+   ("E" er/expand-region)
+   ("c" er/contract-region)
+   (" " helm-swoop)
+   ("o" recenter-top-bottom)
+   ("u" undo-tree-undo)
+   ("f" avy-goto-word-1 :exit t)
+   ("x" delete-char )
+   ("d" nil "quit")
+   ))
+
+(defhydra hydra-helm (:hint nil :color pink)
+  "
+                                                                          ╭──────┐
+   Navigation   Other  Sources     Mark             Do             Help   │ Helm │
+  ╭───────────────────────────────────────────────────────────────────────┴──────╯
+        ^_k_^         _K_       _p_   [_m_] mark         [_v_] view         [_H_] helm help
+        ^^↑^^         ^↑^       ^↑^   [_t_] toggle all   [_d_] delete       [_s_] source help
+    _h_ ←   → _l_     _c_       ^ ^   [_u_] unmark all   [_f_] follow: %(helm-attr 'follow)
+        ^^↓^^         ^↓^       ^↓^    ^ ^               [_y_] yank selection
+        ^_j_^         _J_       _n_    ^ ^               [_w_] toggle windows
+  --------------------------------------------------------------------------------
+        "
+  ("<tab>" helm-keyboard-quit "back" :exit t)
+  ("<escape>" nil "quit")
+  ("\\" (insert "\\") "\\" :color blue)
+  ("h" helm-beginning-of-buffer)
+  ("j" helm-next-line)
+  ("k" helm-previous-line)
+  ("l" helm-end-of-buffer)
+  ("g" helm-beginning-of-buffer)
+  ("G" helm-end-of-buffer)
+  ("n" helm-next-source)
+  ("p" helm-previous-source)
+  ("K" helm-scroll-other-window-down)
+  ("J" helm-scroll-other-window)
+  ("c" helm-recenter-top-bottom-other-window)
+  ("m" helm-toggle-visible-mark)
+  ("t" helm-toggle-all-marks)
+  ("u" helm-unmark-all)
+  ("H" helm-help)
+  ("s" helm-buffer-help)
+  ("v" helm-execute-persistent-action)
+  ("d" helm-persistent-delete-marked)
+  ("y" helm-yank-selection)
+  ("w" helm-toggle-resplit-and-swap-windows)
+  ("f" helm-follow-mode))
+
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'expand-region)
 (pending-delete-mode t)
-(define-key global-map (kbd "C-i") 'er/expand-region)
+
 
 (require 'aggressive-indent)
 
@@ -72,20 +150,21 @@
 (key-chord-define-global "we"     "\C-i") ;;Tab
 (key-chord-define-global " q"     'sr-speedbar-toggle)
 (key-chord-define-global "jo"     'delete-backward-char)
+(key-chord-define-global "JO"     'backward-kill-word)
 (key-chord-define-global "fw"     'delete-forward-char)
+(key-chord-define-global "jj"     'compile)
+(key-chord-define-global "kk"     'comment-or-uncomment-region)
 
 ;;Commonly used fns.
 (key-chord-define-global "uu"     'undo-tree-visualize)
 (key-chord-define-global "xx"     'helm-M-x)
 (key-chord-define-global "cc"     'magit-status)
-(key-chord-define-global "dd"     'helm-descbinds)
+(key-chord-define-global "DD"     'helm-descbinds)
 (key-chord-define-global "yy"     'helm-show-kill-ring)
-(key-chord-define-global "ee"     'eval-last-sexp)
-;;(key-chord-define-global "ff"     'keyboard-quit)
+(key-chord-define-global "vv"     'eval-last-sexp)
 (key-chord-define-global "hh"     'finder-by-keyword)
-(key-chord-define-global "ss"     'helm-swoop)
 (key-chord-define-global "ww"     'save-buffer)
-;;(key-chord-define-global ""     'er/expand-region)
+(key-chord-define-global "IO"     'er/expand-region)
 
 ;;Macros
 (key-chord-define-global "12"     'kmacro-start-macro)
@@ -97,13 +176,16 @@
 (key-chord-define-global "3f"     "\C-x3")
 (key-chord-define-global "1f"     "\C-x0")
 (key-chord-define-global "4f"     "\C-xk")
-(key-chord-define-global "sd"     'windmove-left)
-(key-chord-define-global "kl"     'windmove-right)
-(key-chord-define-global "sf"     'windmove-down)
-(key-chord-define-global "jl"     'windmove-up)
+
+;;Should be replaced by avy.
+;;(key-chord-define-global "sd"     'windmove-left)
+;;(key-chord-define-global "kl"     'windmove-right)
+;;(key-chord-define-global "sf"     'windmove-down)
+;;(key-chord-define-global "jl"     'windmove-up)
 
 (require 'avy)
-(key-chord-define-global "jk"     'avy-goto-word-1)
+(key-chord-define-global "JK"     'avy-goto-word-1)
+(key-chord-define-global "jf"     'avy-goto-word-1)
 
 (require 'org-install)
 (setq org-hide-leading-stars t)
@@ -130,7 +212,6 @@
   )
 
 (require 'helm)
-
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)

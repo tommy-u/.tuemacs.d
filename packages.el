@@ -64,7 +64,7 @@
    ("j" next-line)
    ("k" previous-line)
    ("l" forward-char)
-   ("h" backward-char)   
+   ("h" backward-char)
    ("J" (lambda () (interactive) (forward-line  8)))
    ("K" (lambda () (interactive) (forward-line -8)))
    ("L" forward-word)
@@ -77,11 +77,37 @@
    ("w" kill-region)
    ("E" er/expand-region)
    ("c" er/contract-region)
-   (" " helm-swoop)
+   ("s" helm-swoop)
    ("o" recenter-top-bottom)
    ("u" undo-tree-undo)
    ("f" avy-goto-word-1 :exit t)
    ("x" delete-char )
+   ("d" nil "quit")
+   ))
+
+(key-chord-define-global
+ "kl"
+ (defhydra hydra-org
+   (:pre
+    (set-cursor-color "#cf5300")
+    :post
+    (set-cursor-color "#ffffff")
+    )
+   "org"
+   ("l" org-do-demote)
+   ("h" org-do-promote)
+   ("t" org-todo)
+   ("c" org-ctrl-c-ctrl-c)
+   ("s" org-show-todo-tree)
+   ("i" org-todo-list)
+   ("p" org-priority-up)
+   ("n" org-priority-down)
+   ("k" org-insert-heading)
+   ("K" org-insert-todo-heading)
+   ("f" org-insert-subheading)
+   ("F" org-insert-todo-subheading)
+
+   ("a" org-agenda-list)
    ("d" nil "quit")
    ))
 
@@ -148,9 +174,11 @@
 
 (require 'avy)
 (key-chord-define-global "JK"     'avy-goto-word-1)
-(key-chord-define-global "jf"     'avy-goto-word-1)
+(key-chord-define-global "ii"     'avy-goto-word-1)
 
 (require 'org-install)
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 (setq org-hide-leading-stars t)
 
 (org-babel-do-load-languages

@@ -7,6 +7,7 @@
 
 (defvar required-packages
   '(
+    ace-window
     expand-region
     nyan-mode
     avy
@@ -68,17 +69,16 @@
    ("H" backward-word)
    ("a" beginning-of-line)
    ("e" move-end-of-line)
-   ("i" kill-line)
+   ("i" kill-line "kill-ln")
    ("y" yank)
    ("m" set-mark-command)
    ("w" kill-region)
-   ("E" er/expand-region)
+   ("x" er/expand-region "exp")
    ("c" er/contract-region)
-   ("s" helm-swoop)
-   ("o" recenter-top-bottom)
+   ("o" recenter-top-bottom "center")
    ("u" undo-tree-undo)
    ("f" avy-goto-word-1 :exit t)
-   ("x" delete-char )
+   ("r" delete-char )
    ("d" nil "quit")
    ))
 
@@ -108,16 +108,16 @@
    (:pre (set-cursor-color "#cf5300")
 	 :post (set-cursor-color "#ffffff"))
    "org"
-   ("t" org-todo)
-   ("k" org-insert-heading :exit t)
+   ("t" org-todo "todo")
+   ("k" org-insert-heading "ins head" :exit t)
    ("K" org-insert-todo-heading :exit t)
    ("f" org-insert-subheading :exit t)
    ("F" org-insert-todo-subheading :exit t)
-   ("u" org-metaup)
+   ("u" org-metaup "metup")
    ("j" org-metadown)
    ("l" org-do-demote)
    ("h" org-do-promote)
-   ("p" org-priority-up)
+   ("p" org-priority-up "prior up")
    ("n" org-priority-down)
 
    ("v" org-ctrl-c-ctrl-c :exit t)
@@ -126,10 +126,51 @@
    ("i" org-todo-list :exit t)
 
    ;; Nested hydras.
-   ("c" hydra-org-clock/body :exit t)
-   ("a" hydra-org-agenda/body :exit t)
+   ("c" hydra-org-clock/body "clock" :exit t)
+   ("a" hydra-org-agenda/body "agenda" :exit t)
    ("d" nil "quit")
    ))
+
+(defhydra hydra-ace-window
+  (:pre (set-cursor-color "#ff0000")
+	:post (set-cursor-color "#ffffff"))
+  "ace-window"
+  ("w" ace-window "win")
+  ("s" ace-swap-window "swap")
+  ("j" ace-select-window "sel")
+  ("x" ace-delete-window "del")
+  ("f" ace-maximize-window "max")
+  ("m" ace-window-display-mode "mark wins")
+  
+  ("d" nil "quit")
+  )
+
+(key-chord-define-global
+ "dk"
+ (defhydra hydra-window (:color red)
+   "window mv"
+   ("h" windmove-left)
+   ("j" windmove-down)
+   ("k" windmove-up)
+   ("l" windmove-right)
+   ("L" (lambda ()
+	  (interactive)
+	  (split-window-right)
+	  (windmove-right)))
+   ("J" (lambda ()
+	  (interactive)
+	  (split-window-below)
+	  (windmove-down)))
+   ("v" split-window-right)
+   ("x" split-window-below)
+
+   ("w" ace-window "win")
+   ("s" ace-swap-window "swap")
+   ("x" ace-delete-window "del")
+   ("f" ace-maximize-window "max")
+   ("m" ace-window-display-mode "mark wins")
+   ("d" nil "quit")))
+
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -193,7 +234,7 @@
 ;;(key-chord-define-global "jl"     'windmove-up)
 
 (require 'avy)
-(key-chord-define-global "JK"     'avy-goto-word-1)
+(key-chord-define-global "jf"     'avy-goto-word-1)
 (key-chord-define-global "ii"     'avy-goto-word-1)
 
 (require 'org-install)

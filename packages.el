@@ -55,11 +55,8 @@
 (key-chord-define-global
  "jk"
  (defhydra hydra-move
-   (:pre
-    (set-cursor-color "#40e0d0")
-    :post
-    (set-cursor-color "#ffffff")
-    )
+   (:pre (set-cursor-color "#40e0d0")
+	 :post (set-cursor-color "#ffffff"))
    "move"
    ("j" next-line)
    ("k" previous-line)
@@ -85,29 +82,52 @@
    ("d" nil "quit")
    ))
 
+(defhydra hydra-org-clock
+  (   :pre (set-cursor-color "#bdb76b")
+	   :post (set-cursor-color "#ffffff"))
+  "clock"
+  ("i" org-clock-in :exit t)
+  ("o" org-clock-out :exit t)
+  ("e" org-set-effort :exit t)
+  ("m" org-clock-modify-effort-estimate :exit t)
+  ("d" nil "quit" :exit t))
+
+(defhydra hydra-org-agenda
+  (   :pre (set-cursor-color "#228b22")
+	   :post (set-cursor-color "#ffffff"))
+  "agenda"
+  ("s" org-clock-in :exit t)
+  ("l" org-clock-out :exit t)
+
+  ("d" nil "quit" :exit t))
+
+
 (key-chord-define-global
  "kl"
  (defhydra hydra-org
-   (:pre
-    (set-cursor-color "#cf5300")
-    :post
-    (set-cursor-color "#ffffff")
-    )
+   (:pre (set-cursor-color "#cf5300")
+	 :post (set-cursor-color "#ffffff"))
    "org"
+   ("t" org-todo)
+   ("k" org-insert-heading :exit t)
+   ("K" org-insert-todo-heading :exit t)
+   ("f" org-insert-subheading :exit t)
+   ("F" org-insert-todo-subheading :exit t)
+   ("u" org-metaup)
+   ("j" org-metadown)
    ("l" org-do-demote)
    ("h" org-do-promote)
-   ("t" org-todo)
-   ("c" org-ctrl-c-ctrl-c)
-   ("s" org-show-todo-tree)
-   ("i" org-todo-list)
    ("p" org-priority-up)
    ("n" org-priority-down)
-   ("k" org-insert-heading)
-   ("K" org-insert-todo-heading)
-   ("f" org-insert-subheading)
-   ("F" org-insert-todo-subheading)
 
-   ("a" org-agenda-list)
+   ("v" org-ctrl-c-ctrl-c :exit t)
+
+   ("s" org-show-todo-tree :exit t)
+   ("i" org-todo-list :exit t)
+
+   ;; Nested hydras.
+   ("c" hydra-org-clock/body :exit t)
+   ("a" hydra-org-agenda/body :exit t)
    ("d" nil "quit")
    ))
 
@@ -136,7 +156,7 @@
 (key-chord-mode 1)
 (key-chord-define-global "qw"     "~")
 (key-chord-define-global "df"     "\C-m") ;;Ret
-(key-chord-define-global "we"     "\C-i") ;;Tab
+;;(key-chord-define-global "we"     "\C-i") ;;Tab
 (key-chord-define-global " q"     'sr-speedbar-toggle)
 (key-chord-define-global "jo"     'delete-backward-char)
 (key-chord-define-global "JO"     'backward-kill-word)
@@ -177,8 +197,10 @@
 (key-chord-define-global "ii"     'avy-goto-word-1)
 
 (require 'org-install)
+(setq org-clock-idle-time 15)
+
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+      '((sequence "TODO" "WAITING" "DONE")))
 (setq org-hide-leading-stars t)
 
 (org-babel-do-load-languages

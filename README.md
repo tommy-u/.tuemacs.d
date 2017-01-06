@@ -7,3 +7,7 @@ Magit requires emacs 23.4, https://github.com/magit/magit/issues/2044, so will n
 See .org file for a TODO list. 
 
 need to install ispell, gnu global, w3m
+
+brew install ispell
+brew install global
+brew install w3m

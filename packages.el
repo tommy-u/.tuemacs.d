@@ -7,6 +7,7 @@
 
 (defvar required-packages
   '(
+    ace-window
     expand-region
     nyan-mode
     avy
@@ -55,11 +56,8 @@
 (key-chord-define-global
  "jk"
  (defhydra hydra-move
-   (:pre
-    (set-cursor-color "#40e0d0")
-    :post
-    (set-cursor-color "#ffffff")
-    )
+   (:pre (set-cursor-color "#40e0d0")
+	 :post (set-cursor-color "#ffffff"))
    "move"
    ("j" next-line)
    ("k" previous-line)
@@ -71,48 +69,108 @@
    ("H" backward-word)
    ("a" beginning-of-line)
    ("e" move-end-of-line)
-   ("i" kill-line)
+   ("i" kill-line "kill-ln")
    ("y" yank)
    ("m" set-mark-command)
    ("w" kill-region)
-   ("E" er/expand-region)
+   ("x" er/expand-region "exp")
    ("c" er/contract-region)
-   ("s" helm-swoop)
-   ("o" recenter-top-bottom)
+   ("o" recenter-top-bottom "center")
    ("u" undo-tree-undo)
    ("f" avy-goto-word-1 :exit t)
-   ("x" delete-char )
+   ("r" delete-char )
    ("d" nil "quit")
    ))
+
+(defhydra hydra-org-clock
+  (   :pre (set-cursor-color "#bdb76b")
+	   :post (set-cursor-color "#ffffff"))
+  "clock"
+  ("i" org-clock-in :exit t)
+  ("o" org-clock-out :exit t)
+  ("e" org-set-effort :exit t)
+  ("m" org-clock-modify-effort-estimate :exit t)
+  ("d" nil "quit" :exit t))
+
+(defhydra hydra-org-agenda
+  (   :pre (set-cursor-color "#228b22")
+	   :post (set-cursor-color "#ffffff"))
+  "agenda"
+  ("s" org-clock-in :exit t)
+  ("l" org-clock-out :exit t)
+
+  ("d" nil "quit" :exit t))
+
 
 (key-chord-define-global
  "kl"
  (defhydra hydra-org
-   (:pre
-    (set-cursor-color "#cf5300")
-    :post
-    (set-cursor-color "#ffffff")
-    )
+   (:pre (set-cursor-color "#cf5300")
+	 :post (set-cursor-color "#ffffff"))
    "org"
+   ("t" org-todo "todo")
+   ("k" org-insert-heading "ins head" :exit t)
+   ("K" org-insert-todo-heading :exit t)
+   ("f" org-insert-subheading :exit t)
+   ("F" org-insert-todo-subheading :exit t)
+   ("u" org-metaup "metup")
+   ("j" org-metadown)
    ("l" org-do-demote)
    ("h" org-do-promote)
-   ("t" org-todo)
-   ("c" org-ctrl-c-ctrl-c)
-   ("s" org-show-todo-tree)
-   ("i" org-todo-list)
-   ("p" org-priority-up)
+   ("p" org-priority-up "prior up")
    ("n" org-priority-down)
-   ("k" org-insert-heading)
-   ("K" org-insert-todo-heading)
-   ("f" org-insert-subheading)
-   ("F" org-insert-todo-subheading)
-   ("u" org-metaup)
-   ("j" org-metadown)
-   ("a" org-agenda-list)
+   ("v" org-ctrl-c-ctrl-c :exit t)
+
+   ("s" org-show-todo-tree :exit t)
+   ("i" org-todo-list :exit t)
+
+   ;; Nested hydras.
+   ("c" hydra-org-clock/body "clock" :exit t)
+   ("a" hydra-org-agenda/body "agenda" :exit t)
    ("d" nil "quit")
    ))
 
-(key-chord-define-global "vr"     eval-and-replace)
+(defhydra hydra-ace-window
+  (:pre (set-cursor-color "#ff0000")
+	:post (set-cursor-color "#ffffff"))
+  "ace-window"
+  ("w" ace-window "win")
+  ("s" ace-swap-window "swap")
+  ("j" ace-select-window "sel")
+  ("x" ace-delete-window "del")
+  ("f" ace-maximize-window "max")
+  ("m" ace-window-display-mode "mark wins")
+  
+  ("d" nil "quit")
+  )
+
+(key-chord-define-global
+ "dk"
+ (defhydra hydra-window (:color red)
+   "window mv"
+   ("h" windmove-left)
+   ("j" windmove-down)
+   ("k" windmove-up)
+   ("l" windmove-right)
+   ("L" (lambda ()
+	  (interactive)
+	  (split-window-right)
+	  (windmove-right)))
+   ("J" (lambda ()
+	  (interactive)
+	  (split-window-below)
+	  (windmove-down)))
+   ("v" split-window-right)
+   ("x" split-window-below)
+
+   ("w" ace-window "win")
+   ("s" ace-swap-window "swap")
+   ("x" ace-delete-window "del")
+   ("f" ace-maximize-window "max")
+   ("m" ace-window-display-mode "mark wins")
+   ("d" nil "quit")))
+
+
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -139,7 +197,7 @@
 (key-chord-mode 1)
 (key-chord-define-global "qw"     "~")
 (key-chord-define-global "df"     "\C-m") ;;Ret
-(key-chord-define-global "we"     "\C-i") ;;Tab
+;;(key-chord-define-global "we"     "\C-i") ;;Tab
 (key-chord-define-global " q"     'sr-speedbar-toggle)
 (key-chord-define-global "jo"     'delete-backward-char)
 (key-chord-define-global "JO"     'backward-kill-word)
@@ -176,12 +234,14 @@
 ;;(key-chord-define-global "jl"     'windmove-up)
 
 (require 'avy)
-(key-chord-define-global "JK"     'avy-goto-word-1)
+(key-chord-define-global "jf"     'avy-goto-word-1)
 (key-chord-define-global "ii"     'avy-goto-word-1)
 
 (require 'org-install)
+(setq org-clock-idle-time 15)
+
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+      '((sequence "TODO" "WAITING" "DONE")))
 (setq org-hide-leading-stars t)
 
 (org-babel-do-load-languages

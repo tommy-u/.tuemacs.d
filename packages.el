@@ -117,7 +117,6 @@
    ("h" org-do-promote)
    ("p" org-priority-up "prior up")
    ("n" org-priority-down)
-
    ("v" org-ctrl-c-ctrl-c :exit t)
 
    ("s" org-show-todo-tree :exit t)
@@ -168,6 +167,7 @@
    ("f" ace-maximize-window "max")
    ("m" ace-window-display-mode "mark wins")
    ("d" nil "quit")))
+
 
 
 (require 'company)

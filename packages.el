@@ -106,10 +106,13 @@
    ("K" org-insert-todo-heading)
    ("f" org-insert-subheading)
    ("F" org-insert-todo-subheading)
-
+   ("u" org-metaup)
+   ("j" org-metadown)
    ("a" org-agenda-list)
    ("d" nil "quit")
    ))
+
+(key-chord-define-global "vr"     eval-and-replace)
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)

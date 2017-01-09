@@ -96,9 +96,7 @@
   (   :pre (set-cursor-color "#228b22")
 	   :post (set-cursor-color "#ffffff"))
   "agenda"
-  ("s" org-clock-in :exit t)
-  ("l" org-clock-out :exit t)
-
+  ("s" org-schedule :exit t)
   ("d" nil "quit" :exit t))
 
 

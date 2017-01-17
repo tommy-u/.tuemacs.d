@@ -1,8 +1,6 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
-** https://www.youtube.com/watch?v=zL0FJ-jbDPU make init .org file.
-** Org mode next line indent in / out
 ** Resolve package writing to .emacs.
 ** Case helm & others on emacs version.
 ** Startup with eshell running

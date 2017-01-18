@@ -168,14 +168,11 @@
    ("m" ace-window-display-mode "mark wins")
    ("d" nil "quit")))
 
-
-
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
 (require 'expand-region)
 (pending-delete-mode t)
-
 
 (require 'aggressive-indent)
 

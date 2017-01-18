@@ -206,7 +206,7 @@
 ;;Commonly used fns.
 (key-chord-define-global "uu"     'undo-tree-visualize)
 (key-chord-define-global "xx"     'helm-M-x)
-(key-chord-define-global "cc"     'magit-status)
+(key-chord-define-global "cd"     'magit-status)
 (key-chord-define-global "DD"     'helm-descbinds)
 (key-chord-define-global "yy"     'helm-show-kill-ring)
 (key-chord-define-global "vv"     'eval-last-sexp)
@@ -233,7 +233,6 @@
 
 (require 'avy)
 (key-chord-define-global "jf"     'avy-goto-word-1)
-(key-chord-define-global "ii"     'avy-goto-word-1)
 
 (require 'org-install)
 (setq org-clock-idle-time 15)

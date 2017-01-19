@@ -28,6 +28,7 @@
     undo-tree
     hydra
     company
+    company-jedi
     ) "A list of packages to ensure are installed at launch.")
 
 (defun packages-installed-p ()
@@ -141,6 +142,13 @@
   )
 
 (key-chord-define-global
+ "bh"
+ (defhydra hydra-bookmark (:color red)
+   "window mv"
+   ("s" bookmark-set "set")
+   ("f" helm-bookmarks "go")))
+
+(key-chord-define-global
  "dk"
  (defhydra hydra-window (:color red)
    "window mv"
@@ -166,8 +174,13 @@
    ("m" ace-window-display-mode "mark wins")
    ("d" nil "quit")))
 
-;;(require 'company)
-;;(add-hook 'after-init-hook 'global-company-mode)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(require 'company-jedi)
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-to-list 'company-backends 'company-jedi)
 
 (require 'expand-region)
 (pending-delete-mode t)

@@ -9,7 +9,6 @@
   '(
     ace-window
     expand-region
-    nyan-mode
     avy
     aggressive-indent
     monokai-theme
@@ -49,7 +48,6 @@
       (package-install p))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;(key-chord-define-global "
 
 (require 'hydra)
 
@@ -168,8 +166,8 @@
    ("m" ace-window-display-mode "mark wins")
    ("d" nil "quit")))
 
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
+;;(require 'company)
+;;(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'expand-region)
 (pending-delete-mode t)
@@ -184,7 +182,6 @@
 
 (define-key global-map (kbd "C-c m") 'magit-status)
 
-;; Maybe this would make a good hydra?
 (require 'key-chord)
 (setq key-chord-two-keys-delay .05
       key-chord-one-key-delay .18)
@@ -222,12 +219,6 @@
 (key-chord-define-global "1f"     "\C-x0")
 (key-chord-define-global "4f"     "\C-xk")
 
-;;Should be replaced by avy.
-;;(key-chord-define-global "sd"     'windmove-left)
-;;(key-chord-define-global "kl"     'windmove-right)
-;;(key-chord-define-global "sf"     'windmove-down)
-;;(key-chord-define-global "jl"     'windmove-up)
-
 (require 'avy)
 (key-chord-define-global "jf"     'avy-goto-word-1)
 
@@ -235,7 +226,7 @@
 (setq org-clock-idle-time 15)
 
 (setq org-todo-keywords
-      '((sequence "TODO" "WAITING" "DONE")))
+      '((sequence "TODO" "DONE")))
 (setq org-hide-leading-stars t)
 
 (org-babel-do-load-languages
@@ -294,7 +285,6 @@
 ;; enable Helm version of Projectile with replacement commands
 (helm-projectile-on)
 
-
 (require 'default-text-scale)
 
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
@@ -317,11 +307,6 @@
 
 ;;turn on everywhere
 (global-undo-tree-mode 1)
-;; make ctrl-z undo
-(global-set-key (kbd "C-z") 'undo)
-;; make ctrl-Z redo
-(defalias 'redo 'undo-tree-redo)
-(global-set-key (kbd "C-S-z") 'redo)
 
 (provide 'packages)
 ;;; packages.el ends here

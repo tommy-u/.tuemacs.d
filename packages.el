@@ -28,7 +28,7 @@
     undo-tree
     hydra
     company
-    company-jedi
+    ;;    company-jedi
     ) "A list of packages to ensure are installed at launch.")
 
 (defun packages-installed-p ()
@@ -177,10 +177,10 @@
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(require 'company-jedi)
-(autoload 'jedi:setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-to-list 'company-backends 'company-jedi)
+;; (require 'company-jedi)
+;; (autoload 'jedi:setup "jedi" nil t)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (add-to-list 'company-backends 'company-jedi)
 
 (require 'expand-region)
 (pending-delete-mode t)
@@ -264,6 +264,14 @@
   )
 
 (require 'helm)
+
+;;Helm history
+(add-hook 'eshell-mode-hook
+	  (lambda ()
+	    (define-key eshell-mode-map
+	      (kbd "M-p")
+	      'helm-eshell-history)))
+
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
@@ -302,8 +310,6 @@
 
 (global-set-key (kbd "C-M-=") 'default-text-scale-increase)
 (global-set-key (kbd "C-M--") 'default-text-scale-decrease)
-(default-text-scale-increase)
-(default-text-scale-increase)
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)

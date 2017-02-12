@@ -2,6 +2,8 @@
 
 (package-initialize)
 
+(setq eshell-cmpl-cycle-completions nil)
+
 (setq backup-directory-alist
       `((".*" . ,"~/.emacs_backups")))
 

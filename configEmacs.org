@@ -2,6 +2,12 @@
 * (Intended to be viewed in Emacs org-mode)
 
 ** Create separate spacemacs configs as well as full custom version.
+
+* Spacemacs
+** Correcting colors in tmux 
+*** Add export TERM="xterm-256color" to .bashrc
+
+* Custom
 ** Resolve package writing to .emacs.
 ** Case helm & others on emacs version.
 ** Startup with eshell running

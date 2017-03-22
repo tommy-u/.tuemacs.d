@@ -1,6 +1,7 @@
 * Goals for configuring emacs 
 * (Intended to be viewed in Emacs org-mode)
 
+** Create separate spacemacs configs as well as full custom version.
 ** Resolve package writing to .emacs.
 ** Case helm & others on emacs version.
 ** Startup with eshell running

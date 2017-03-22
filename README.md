@@ -1,7 +1,7 @@
 # .tuemacs.d
 
 If you'd like to give this a try
-Pull this directory down into ~.
+Pull this directory down into \~.
 Install ispell, gnu global, w3m (see below for Mac).
 Write the following line into you .emacs file: (load-file "~/.tuemacs.d/init.el")
 

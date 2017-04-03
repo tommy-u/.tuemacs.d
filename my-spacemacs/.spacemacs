@@ -38,20 +38,22 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ivy
-     ;; helm
      auto-completion
-     ;; better-defaults
+     better-defaults
      emacs-lisp
      git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     markdown
+     org
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      spell-checking
      syntax-checking
-     ;; version-control
-     ;; osx
+     (version-control :variables
+                      version-control-global-margin t
+                      version-control-diff-side 'right
+                      version-control-diff-tool 'diff-hl)
+     osx
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
@@ -59,11 +61,12 @@ values."
      cscope
      gtags
      )
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   ;; configuration in `dotspacemacs/usr-config'.
+   dotspacemacs-additional-packages '(key-chord)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -328,9 +331,73 @@ you should place your code here."
   ;; In shell mode it's super annoying to have to select a partial path with enter.
   ;; Perhaps the better move is simply dropping into emacs binding while in shell mode.
   ;; (define-key helm-map (kbd "TAB") #'helm-maybe-exit-minibuffer)
+  (setq projectile-enable-caching t)
+  (setq evil-escape-key-sequence "jk")
+  (setq evil-escape-unordered-key-sequence t)
+  (key-chord-mode 1)
+  (key-chord-define-global "uu"     'undo-tree-visualize)
+  (key-chord-define-global "jf"     'avy-goto-word-1)
+  (key-chord-define-global "jo"     'delete-backward-char)
+  (key-chord-define-global "JO"     'backward-kill-word)
+  (key-chord-define-global "fw"     'delete-forward-char)
+  (key-chord-define-global
+   "dk"
+   (defhydra hydra-window (:color red)
+     "window mv"
+     ("h" windmove-left)
+     ("j" windmove-down)
+     ("k" windmove-up)
+     ("l" windmove-right)
+     ("L" (lambda ()
+            (interactive)
+            (split-window-right)
+            (windmove-right)))
+     ("J" (lambda ()
+            (interactive)
+            (split-window-below)
+            (windmove-down)))
+     ("v" split-window-right)
+     ("x" split-window-below)
 
-  )
+     ("w" ace-window "win")
+     ("s" ace-swap-window "swap")
+     ("x" ace-delete-window "del")
+     ("f" ace-maximize-window "max")
+     ("m" ace-window-display-mode "mark wins")
+     ("d" nil "quit")))
+  (key-chord-define-global
+   "kl"
+   (defhydra hydra-org
+     (:pre (set-cursor-color "#cf5300")
+           :post (set-cursor-color "#ffffff"))
+     "org"
+     ("t" org-todo "todo")
+     ("k" org-insert-heading "ins head" :exit t)
+     ("K" org-insert-todo-heading :exit t)
+     ("f" org-insert-subheading :exit t)
+     ("F" org-insert-todo-subheading :exit t)
+     ("u" org-metaup "metup")
+     ("j" org-metadown)
+     ("l" org-do-demote)
+     ("h" org-do-promote)
+     ("p" org-priority-up "prior up")
+     ("n" org-priority-down)
+     ("v" org-ctrl-c-ctrl-c :exit t)
 
+     ("s" org-show-todo-tree :exit t)
+     ("i" org-todo-list :exit t)
+
+     ;; Nested hydras.
+     ("c" hydra-org-clock/body "clock" :exit t)
+     ("a" hydra-org-agenda/body "agenda" :exit t)
+     ("d" nil "quit")
+     ))
+
+  ;; Don't think either of these work.
+  ;; (add-hook 'shell-mode-hook (lambda () (ivy-mode -1)) 'append)
+  ;;Hack to avoid avy's cutoff completion. TODO: clean this up.
+  ;; (add-hook 'shell-mode-hook 'helm-mode)
+)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (defun dotspacemacs/emacs-custom-settings ()
@@ -345,7 +412,8 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (wgrep smex ivy-purpose ivy-hydra flyspell-correct-ivy counsel-projectile counsel swiper ivy helm-gtags ggtags mmm-mode markdown-toc markdown-mode gh-md yapfify smeargle pyvenv pytest pyenv-mode py-isort pip-requirements orgit magit-gitflow live-py-mode hy-mode helm-pydoc helm-gitignore helm-cscope xcscope helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor disaster cython-mode company-statistics company-c-headers company-anaconda company cmake-mode clang-format auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (key-chord git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl unfill reveal-in-osx-finder pbcopy osx-trash osx-dictionary mwim launchctl xterm-color shell-pop org-projectile org-present org-pomodoro alert log4e gntp org-download multi-term htmlize gnuplot eshell-z eshell-prompt-extras esh-help flycheck-color-mode-line wgrep smex ivy-purpose ivy-hydra flyspell-correct-ivy counsel-projectile counsel swiper ivy helm-gtags ggtags mmm-mode markdown-toc markdown-mode gh-md yapfify smeargle pyvenv pytest pyenv-mode py-isort pip-requirements orgit magit-gitflow live-py-mode hy-mode helm-pydoc helm-gitignore helm-cscope xcscope helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor disaster cython-mode company-statistics company-c-headers company-anaconda company cmake-mode clang-format auto-yasnippet yasnippet auto-dictionary anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+ '(safe-local-variable-values (quote ((helm-make-build-dir . "./apps/polybench")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

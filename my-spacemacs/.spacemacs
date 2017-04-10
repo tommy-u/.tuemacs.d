@@ -70,7 +70,7 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(smartparens)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -277,7 +277,7 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
@@ -334,12 +334,18 @@ you should place your code here."
   (setq projectile-enable-caching t)
   (setq evil-escape-key-sequence "jk")
   (setq evil-escape-unordered-key-sequence t)
+
   (key-chord-mode 1)
+  (key-chord-define-global "gf"     'bookmark-jump)
   (key-chord-define-global "uu"     'undo-tree-visualize)
   (key-chord-define-global "jf"     'avy-goto-word-1)
   (key-chord-define-global "jo"     'delete-backward-char)
   (key-chord-define-global "JO"     'backward-kill-word)
   (key-chord-define-global "fw"     'delete-forward-char)
+  (key-chord-define-global "qw"     "~")
+  (key-chord-define-global "qe"     'ggtags-find-tag-dwim)
+  (key-chord-define-global "qr"     'ggtags-grep)
+
   (key-chord-define-global
    "dk"
    (defhydra hydra-window (:color red)
@@ -356,15 +362,12 @@ you should place your code here."
             (interactive)
             (split-window-below)
             (windmove-down)))
-     ("v" split-window-right)
-     ("x" split-window-below)
-
-     ("w" ace-window "win")
      ("s" ace-swap-window "swap")
      ("x" ace-delete-window "del")
      ("f" ace-maximize-window "max")
      ("m" ace-window-display-mode "mark wins")
      ("d" nil "quit")))
+
   (key-chord-define-global
    "kl"
    (defhydra hydra-org

@@ -5,7 +5,8 @@
 
 * Spacemacs
 ** Correcting colors in tmux 
-*** Add export TERM="xterm-256color" to .bashrc
+*** Add export TERM="xterm-256color" to .bashrc or set-option -g default-terminal screen-256color to .tmux.conf
+*** fix escape. in tmux.conf: set-option -g default-terminal screen-256color
 
 * Custom
 ** Resolve package writing to .emacs.

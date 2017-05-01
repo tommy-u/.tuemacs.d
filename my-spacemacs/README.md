@@ -31,6 +31,7 @@ sudo make install
 ```
 
 # Layers I'm using
+```
 ivy
 auto-completion
 better-defaults
@@ -53,4 +54,5 @@ osx
        c-c++-enable-clang-support t)
 python
 cscope
-     gtags
+gtags
+```

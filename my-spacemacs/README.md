@@ -4,6 +4,8 @@ http://spacemacs.org/
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ```
 
+Copy .spacemacs file to ~/
+
 # Origional Content
 I like my key chorded hydras in user-config.
 

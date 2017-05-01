@@ -4,6 +4,9 @@ http://spacemacs.org/
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 ```
 
+# Origional Content
+I like my key chorded hydras in user-config.
+
 # Extra tools
 cscope: https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btags/cscope
 ```bash
@@ -56,3 +59,5 @@ python
 cscope
 gtags
 ```
+
+# Problems

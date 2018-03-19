@@ -10,6 +10,13 @@ Copy .spacemacs file to ~/
 I like my key chorded hydras in user-config.
 
 # Extra tools
+Grab fonts.
+```bash
+#mac
+brew tap caskroom/fonts
+brew cask install font-source-code-pro
+```
+
 cscope: https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Btags/cscope
 ```bash
 #mac

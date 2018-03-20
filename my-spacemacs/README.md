@@ -10,6 +10,12 @@ Copy .spacemacs file to ~/
 I like my key chorded hydras in user-config.
 
 # Extra tools
+
+Ispell
+```bash
+brew install ispell
+```
+
 Grab fonts.
 ```bash
 #mac
